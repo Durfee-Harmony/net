@@ -8,5 +8,12 @@ namespace MegaDesk_HarmonyDurfee
 {
   class DeskQuote
   {
+    /* Notes from class
+    private void getRushOrderPrices()
+    {
+      var pricesFile = @"rushOrderPrices.txt";
+      string[] prices = File.ReadAllLines(pricesFile);
+    }
+    */
   }
 }
