@@ -50,6 +50,7 @@
       this.Controls.Add(this.BtnExit);
       this.Name = "ViewAllQuotes";
       this.Text = "ViewAllQuotes";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ViewAllQuotes_FormClosing);
       this.ResumeLayout(false);
 
     }

@@ -42,7 +42,6 @@
       this.LblDaysToCompletion = new System.Windows.Forms.Label();
       this.BtnExit = new System.Windows.Forms.Button();
       this.BtnSaveExit = new System.Windows.Forms.Button();
-      this.BtnValidate = new System.Windows.Forms.Button();
       ((System.ComponentModel.ISupportInitialize)(this.NumDeskWidth)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.NumDeskHeight)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.NumDrawerTotal)).BeginInit();
@@ -177,10 +176,10 @@
       this.ComboDaysToCompletion.AllowDrop = true;
       this.ComboDaysToCompletion.FormattingEnabled = true;
       this.ComboDaysToCompletion.Items.AddRange(new object[] {
-            "3 Days",
-            "5 Days",
-            "7 Days",
-            "14 Days"});
+            "Rush3Days",
+            "Rush5Days",
+            "Rush7Days",
+            "Normal14Days"});
       this.ComboDaysToCompletion.Location = new System.Drawing.Point(545, 598);
       this.ComboDaysToCompletion.Name = "ComboDaysToCompletion";
       this.ComboDaysToCompletion.Size = new System.Drawing.Size(321, 45);
@@ -192,13 +191,13 @@
       this.LblDaysToCompletion.AutoSize = true;
       this.LblDaysToCompletion.Location = new System.Drawing.Point(197, 598);
       this.LblDaysToCompletion.Name = "LblDaysToCompletion";
-      this.LblDaysToCompletion.Size = new System.Drawing.Size(305, 37);
+      this.LblDaysToCompletion.Size = new System.Drawing.Size(138, 37);
       this.LblDaysToCompletion.TabIndex = 13;
-      this.LblDaysToCompletion.Text = "Days to Completion:";
+      this.LblDaysToCompletion.Text = "Delivery:";
       // 
       // BtnExit
       // 
-      this.BtnExit.Location = new System.Drawing.Point(208, 698);
+      this.BtnExit.Location = new System.Drawing.Point(204, 698);
       this.BtnExit.Name = "BtnExit";
       this.BtnExit.Size = new System.Drawing.Size(214, 80);
       this.BtnExit.TabIndex = 15;
@@ -208,21 +207,12 @@
       // 
       // BtnSaveExit
       // 
-      this.BtnSaveExit.Location = new System.Drawing.Point(648, 698);
+      this.BtnSaveExit.Location = new System.Drawing.Point(545, 698);
       this.BtnSaveExit.Name = "BtnSaveExit";
-      this.BtnSaveExit.Size = new System.Drawing.Size(214, 80);
+      this.BtnSaveExit.Size = new System.Drawing.Size(321, 80);
       this.BtnSaveExit.TabIndex = 16;
-      this.BtnSaveExit.Text = "Save + Exit";
+      this.BtnSaveExit.Text = "Add New Quote";
       this.BtnSaveExit.UseVisualStyleBackColor = true;
-      // 
-      // BtnValidate
-      // 
-      this.BtnValidate.Location = new System.Drawing.Point(428, 698);
-      this.BtnValidate.Name = "BtnValidate";
-      this.BtnValidate.Size = new System.Drawing.Size(214, 80);
-      this.BtnValidate.TabIndex = 17;
-      this.BtnValidate.Text = "Validate";
-      this.BtnValidate.UseVisualStyleBackColor = true;
       // 
       // AddQuote
       // 
@@ -230,7 +220,6 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoSize = true;
       this.ClientSize = new System.Drawing.Size(1094, 860);
-      this.Controls.Add(this.BtnValidate);
       this.Controls.Add(this.BtnSaveExit);
       this.Controls.Add(this.BtnExit);
       this.Controls.Add(this.ComboDaysToCompletion);
@@ -247,6 +236,7 @@
       this.Controls.Add(this.LblCustomerName);
       this.Name = "AddQuote";
       this.Text = "Add New Quote";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormClosingEvent);
       ((System.ComponentModel.ISupportInitialize)(this.NumDeskWidth)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.NumDeskHeight)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.NumDrawerTotal)).EndInit();
@@ -271,6 +261,5 @@
     private System.Windows.Forms.Label LblDaysToCompletion;
         private System.Windows.Forms.Button BtnExit;
         private System.Windows.Forms.Button BtnSaveExit;
-        private System.Windows.Forms.Button BtnValidate;
     }
 }

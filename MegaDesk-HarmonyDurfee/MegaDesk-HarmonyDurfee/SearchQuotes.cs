@@ -24,5 +24,10 @@ namespace MegaDesk_HarmonyDurfee
       mainMenu.Show();
       this.Close();
     }
-  }
+
+        private void SearchQuotes_FormClosing(object sender, FormClosingEventArgs e)
+        {
+          mainMenu.Show();
+        }
+    }
 }

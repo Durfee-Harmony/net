@@ -24,5 +24,10 @@ namespace MegaDesk_HarmonyDurfee
       mainMenu.Show();
       this.Close();
     }
-  }
+
+        private void FormClosingEvent(object sender, FormClosingEventArgs e)
+        {
+          mainMenu.Show();
+        }
+    }
 }

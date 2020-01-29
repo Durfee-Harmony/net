@@ -50,6 +50,7 @@
       this.Controls.Add(this.BtnExit);
       this.Name = "SearchQuotes";
       this.Text = "SearchQuotes";
+      this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SearchQuotes_FormClosing);
       this.ResumeLayout(false);
 
     }
