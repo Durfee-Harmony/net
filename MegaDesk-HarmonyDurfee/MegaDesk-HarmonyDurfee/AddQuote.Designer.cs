@@ -37,7 +37,7 @@
       this.NumDeskHeight = new System.Windows.Forms.NumericUpDown();
       this.NumDrawerTotal = new System.Windows.Forms.NumericUpDown();
       this.LblDeskMaterial = new System.Windows.Forms.Label();
-      this.ComboDeskMaterials = new System.Windows.Forms.ComboBox();
+      this.comSurfaceMaterial = new System.Windows.Forms.ComboBox();
       this.ComboDaysToCompletion = new System.Windows.Forms.ComboBox();
       this.LblDaysToCompletion = new System.Windows.Forms.Label();
       this.BtnExit = new System.Windows.Forms.Button();
@@ -155,21 +155,15 @@
       this.LblDeskMaterial.TabIndex = 11;
       this.LblDeskMaterial.Text = "Select Desk Materials:";
       // 
-      // ComboDeskMaterials
+      // comSurfaceMaterial
       // 
-      this.ComboDeskMaterials.AllowDrop = true;
-      this.ComboDeskMaterials.FormattingEnabled = true;
-      this.ComboDeskMaterials.Items.AddRange(new object[] {
-            "Laminate",
-            "Oak",
-            "Rosewood",
-            "Veneer",
-            "Pine"});
-      this.ComboDeskMaterials.Location = new System.Drawing.Point(545, 502);
-      this.ComboDeskMaterials.Name = "ComboDeskMaterials";
-      this.ComboDeskMaterials.Size = new System.Drawing.Size(321, 45);
-      this.ComboDeskMaterials.TabIndex = 12;
-      this.ComboDeskMaterials.Text = "[Choose one]";
+      this.comSurfaceMaterial.AllowDrop = true;
+      this.comSurfaceMaterial.FormattingEnabled = true;
+      this.comSurfaceMaterial.Location = new System.Drawing.Point(545, 502);
+      this.comSurfaceMaterial.Name = "comSurfaceMaterial";
+      this.comSurfaceMaterial.Size = new System.Drawing.Size(321, 45);
+      this.comSurfaceMaterial.TabIndex = 12;
+      this.comSurfaceMaterial.Text = "[Choose one]";
       // 
       // ComboDaysToCompletion
       // 
@@ -224,7 +218,7 @@
       this.Controls.Add(this.BtnExit);
       this.Controls.Add(this.ComboDaysToCompletion);
       this.Controls.Add(this.LblDaysToCompletion);
-      this.Controls.Add(this.ComboDeskMaterials);
+      this.Controls.Add(this.comSurfaceMaterial);
       this.Controls.Add(this.LblDeskMaterial);
       this.Controls.Add(this.NumDrawerTotal);
       this.Controls.Add(this.NumDeskHeight);
@@ -256,7 +250,7 @@
     private System.Windows.Forms.NumericUpDown NumDeskHeight;
     private System.Windows.Forms.NumericUpDown NumDrawerTotal;
     private System.Windows.Forms.Label LblDeskMaterial;
-    private System.Windows.Forms.ComboBox ComboDeskMaterials;
+    private System.Windows.Forms.ComboBox comSurfaceMaterial;
     private System.Windows.Forms.ComboBox ComboDaysToCompletion;
     private System.Windows.Forms.Label LblDaysToCompletion;
         private System.Windows.Forms.Button BtnExit;

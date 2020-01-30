@@ -17,6 +17,12 @@ namespace MegaDesk_HarmonyDurfee
     {
       mainMenu = mainM;
       InitializeComponent();
+
+      List<Desk.DesktopMaterial> materials = Enum.GetValues(typeof(Desk.DesktopMaterial))
+                                                          .Cast<Desk.DesktopMaterial>()
+                                                            .ToList();
+      comSurfaceMaterial.DataSource = materials;
+      comSurfaceMaterial.SelectedIndex = -1;
     }
 
     private void BtnExit_Click(object sender, EventArgs e)
