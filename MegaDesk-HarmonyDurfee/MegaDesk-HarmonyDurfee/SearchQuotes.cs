@@ -19,6 +19,25 @@ namespace MegaDesk_HarmonyDurfee
       InitializeComponent();
     }
 
+    /* Notes from Class
+    private void loadGrid(Desk.DesktopMaterial desktopMaterial)
+    {
+      var quotesFile = @"quotes.json";
+      using (StreamReader reader = new StreamReader(quotesFile))
+      {
+        string quotes = reader.ReadToEnd();
+        List<DeskQuote> deskQuotes = JsonConvert.DeserializeObject<List<DeskQuote>>(quotes);
+
+      dataGridView1.DataSource = deskQuotes
+        .Select(d => new
+          {
+            Date = d.QuoteDate,
+            etc
+          }
+      }
+    }
+    */
+
     private void BtnExit_Click(object sender, EventArgs e)
     {
       mainMenu.Show();

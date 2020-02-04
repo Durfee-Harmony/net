@@ -18,11 +18,11 @@ namespace MegaDesk_HarmonyDurfee
       mainMenu = mainM;
       InitializeComponent();
 
-      List<Desk.DesktopMaterial> materials = Enum.GetValues(typeof(Desk.DesktopMaterial))
-                                                          .Cast<Desk.DesktopMaterial>()
+      List<DesktopMaterial> materials = Enum.GetValues(typeof(DesktopMaterial))
+                                                          .Cast<DesktopMaterial>()
                                                             .ToList();
-      comSurfaceMaterial.DataSource = materials;
-      comSurfaceMaterial.SelectedIndex = -1;
+      ComDesktopMaterial.DataSource = materials;
+      ComDesktopMaterial.SelectedIndex = -1;
     }
 
     private void BtnExit_Click(object sender, EventArgs e)
@@ -35,5 +35,22 @@ namespace MegaDesk_HarmonyDurfee
         {
           mainMenu.Show();
         }
+
+    private void BtnSaveExit_Click(object sender, EventArgs e)
+    {
+      Desk userDesk = new Desk();
+      userDesk.Width = (int)(NumDeskWidth.Value);
+      userDesk.Depth = (int)(NumDeskHeight.Value);
+      userDesk.NumberOfDrawers = (int)(NumDrawerTotal.Value);
+      userDesk.DesktopMaterial = (DesktopMaterial)ComDesktopMaterial.SelectedItem;
+      //outputQuote.Text = ComDesktopMaterial.SelectedItem.ToString();
+      DeskQuote userQuote = new DeskQuote();
+      userQuote.CustomerName = TxtCustomerName.Text;
+      userQuote.Delivery = Convert.ToInt32(ComDelivery.SelectedValue);
+      userQuote.Desk = userDesk;
+      userQuote.getRushOrderPrices();
+      userQuote.CalculateDeskQuote();
+      //outputQuote.Text = userQuote.FinalPrice.ToString();
     }
+  }
 }

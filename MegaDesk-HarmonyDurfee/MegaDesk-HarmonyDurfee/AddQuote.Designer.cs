@@ -37,11 +37,12 @@
       this.NumDeskHeight = new System.Windows.Forms.NumericUpDown();
       this.NumDrawerTotal = new System.Windows.Forms.NumericUpDown();
       this.LblDeskMaterial = new System.Windows.Forms.Label();
-      this.comSurfaceMaterial = new System.Windows.Forms.ComboBox();
-      this.ComboDaysToCompletion = new System.Windows.Forms.ComboBox();
+      this.ComDesktopMaterial = new System.Windows.Forms.ComboBox();
+      this.ComDelivery = new System.Windows.Forms.ComboBox();
       this.LblDaysToCompletion = new System.Windows.Forms.Label();
       this.BtnExit = new System.Windows.Forms.Button();
       this.BtnSaveExit = new System.Windows.Forms.Button();
+      this.outputQuote = new System.Windows.Forms.Label();
       ((System.ComponentModel.ISupportInitialize)(this.NumDeskWidth)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.NumDeskHeight)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.NumDrawerTotal)).BeginInit();
@@ -155,30 +156,30 @@
       this.LblDeskMaterial.TabIndex = 11;
       this.LblDeskMaterial.Text = "Select Desk Materials:";
       // 
-      // comSurfaceMaterial
+      // ComDesktopMaterial
       // 
-      this.comSurfaceMaterial.AllowDrop = true;
-      this.comSurfaceMaterial.FormattingEnabled = true;
-      this.comSurfaceMaterial.Location = new System.Drawing.Point(545, 502);
-      this.comSurfaceMaterial.Name = "comSurfaceMaterial";
-      this.comSurfaceMaterial.Size = new System.Drawing.Size(321, 45);
-      this.comSurfaceMaterial.TabIndex = 12;
-      this.comSurfaceMaterial.Text = "[Choose one]";
+      this.ComDesktopMaterial.AllowDrop = true;
+      this.ComDesktopMaterial.FormattingEnabled = true;
+      this.ComDesktopMaterial.Location = new System.Drawing.Point(545, 502);
+      this.ComDesktopMaterial.Name = "ComDesktopMaterial";
+      this.ComDesktopMaterial.Size = new System.Drawing.Size(321, 45);
+      this.ComDesktopMaterial.TabIndex = 12;
+      this.ComDesktopMaterial.Text = "[Choose one]";
       // 
-      // ComboDaysToCompletion
+      // ComDelivery
       // 
-      this.ComboDaysToCompletion.AllowDrop = true;
-      this.ComboDaysToCompletion.FormattingEnabled = true;
-      this.ComboDaysToCompletion.Items.AddRange(new object[] {
+      this.ComDelivery.AllowDrop = true;
+      this.ComDelivery.FormattingEnabled = true;
+      this.ComDelivery.Items.AddRange(new object[] {
             "Rush3Days",
             "Rush5Days",
             "Rush7Days",
             "Normal14Days"});
-      this.ComboDaysToCompletion.Location = new System.Drawing.Point(545, 598);
-      this.ComboDaysToCompletion.Name = "ComboDaysToCompletion";
-      this.ComboDaysToCompletion.Size = new System.Drawing.Size(321, 45);
-      this.ComboDaysToCompletion.TabIndex = 14;
-      this.ComboDaysToCompletion.Text = "[Choose one]";
+      this.ComDelivery.Location = new System.Drawing.Point(545, 598);
+      this.ComDelivery.Name = "ComDelivery";
+      this.ComDelivery.Size = new System.Drawing.Size(321, 45);
+      this.ComDelivery.TabIndex = 14;
+      this.ComDelivery.Text = "[Choose one]";
       // 
       // LblDaysToCompletion
       // 
@@ -207,6 +208,16 @@
       this.BtnSaveExit.TabIndex = 16;
       this.BtnSaveExit.Text = "Add New Quote";
       this.BtnSaveExit.UseVisualStyleBackColor = true;
+      this.BtnSaveExit.Click += new System.EventHandler(this.BtnSaveExit_Click);
+      // 
+      // outputQuote
+      // 
+      this.outputQuote.AutoSize = true;
+      this.outputQuote.Location = new System.Drawing.Point(54, 43);
+      this.outputQuote.MinimumSize = new System.Drawing.Size(1000, 10);
+      this.outputQuote.Name = "outputQuote";
+      this.outputQuote.Size = new System.Drawing.Size(1000, 37);
+      this.outputQuote.TabIndex = 17;
       // 
       // AddQuote
       // 
@@ -214,11 +225,12 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.AutoSize = true;
       this.ClientSize = new System.Drawing.Size(1094, 860);
+      this.Controls.Add(this.outputQuote);
       this.Controls.Add(this.BtnSaveExit);
       this.Controls.Add(this.BtnExit);
-      this.Controls.Add(this.ComboDaysToCompletion);
+      this.Controls.Add(this.ComDelivery);
       this.Controls.Add(this.LblDaysToCompletion);
-      this.Controls.Add(this.comSurfaceMaterial);
+      this.Controls.Add(this.ComDesktopMaterial);
       this.Controls.Add(this.LblDeskMaterial);
       this.Controls.Add(this.NumDrawerTotal);
       this.Controls.Add(this.NumDeskHeight);
@@ -250,10 +262,11 @@
     private System.Windows.Forms.NumericUpDown NumDeskHeight;
     private System.Windows.Forms.NumericUpDown NumDrawerTotal;
     private System.Windows.Forms.Label LblDeskMaterial;
-    private System.Windows.Forms.ComboBox comSurfaceMaterial;
-    private System.Windows.Forms.ComboBox ComboDaysToCompletion;
+    private System.Windows.Forms.ComboBox ComDesktopMaterial;
+    private System.Windows.Forms.ComboBox ComDelivery;
     private System.Windows.Forms.Label LblDaysToCompletion;
         private System.Windows.Forms.Button BtnExit;
         private System.Windows.Forms.Button BtnSaveExit;
+        private System.Windows.Forms.Label outputQuote;
     }
 }

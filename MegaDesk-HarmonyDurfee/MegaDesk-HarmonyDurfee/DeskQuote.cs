@@ -11,22 +11,26 @@ namespace MegaDesk_HarmonyDurfee
   {
     public string CustomerName { get; set; }
     public int Delivery { get; set; }
-    Desk desk;
+    public Desk Desk { get; set; }
+    public decimal FinalPrice { get; set; }
+    public string[] PRICES { get; set; }
+
     public int baseDesk = 200;
 
-    static string[] getRushOrderPrices()
+    public string[] getRushOrderPrices()
     {
       var pricesFile = @"rushOrderPrices.txt";
       string[] prices = File.ReadAllLines(pricesFile);
+      this.PRICES = prices;
       return prices;
     }
 
-    decimal CalculateDeskQuote()
+    public decimal CalculateDeskQuote()
     {
       decimal quote = (decimal)this.baseDesk;
-      decimal surface = this.desk.Width * this.desk.Depth;
-      decimal drawers = this.desk.NumberOfDrawers;
-      DesktopMaterial material = this.desk.DesktopMaterial;
+      decimal surface = this.Desk.Width * this.Desk.Depth;
+      decimal drawers = this.Desk.NumberOfDrawers;
+      DesktopMaterial material = this.Desk.DesktopMaterial;
 
       if(surface > 1000M)
       {
@@ -52,6 +56,48 @@ namespace MegaDesk_HarmonyDurfee
         quote += 125M;
       }
 
+      if (Delivery == 3)
+      {
+        if (surface < 1000)
+        {
+          quote += System.Convert.ToDecimal(PRICES[0]);
+        } else if (surface <= 2000)
+        {
+          quote += System.Convert.ToDecimal(PRICES[1]);
+        } else
+        {
+          quote += System.Convert.ToDecimal(PRICES[2]);
+        }
+      } else if (Delivery == 5)
+      {
+        if (surface < 1000)
+        {
+          quote += System.Convert.ToDecimal(PRICES[3]);
+        }
+        else if (surface <= 2000)
+        {
+          quote += System.Convert.ToDecimal(PRICES[4]);
+        }
+        else
+        {
+          quote += System.Convert.ToDecimal(PRICES[5]);
+        }
+      } else if (Delivery == 7)
+      {
+        if (surface < 1000)
+        {
+          quote += System.Convert.ToDecimal(PRICES[6]);
+        }
+        else if (surface <= 2000)
+        {
+          quote += System.Convert.ToDecimal(PRICES[7]);
+        }
+        else
+        {
+          quote += System.Convert.ToDecimal(PRICES[8]);
+        }
+      }
+      this.FinalPrice = quote;
       return quote;
     }
 
