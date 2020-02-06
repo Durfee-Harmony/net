@@ -30,7 +30,7 @@ namespace MegaDesk_HarmonyDurfee
       decimal quote = (decimal)this.baseDesk;
       decimal surface = this.Desk.Width * this.Desk.Depth;
       decimal drawers = this.Desk.NumberOfDrawers;
-      DesktopMaterial material = this.Desk.DesktopMaterial;
+      int material = (int)this.Desk.DesktopMaterial;
 
       if(surface > 1000M)
       {
@@ -56,7 +56,7 @@ namespace MegaDesk_HarmonyDurfee
         quote += 125M;
       }
 
-      if (Delivery == 3)
+      if (this.Delivery == 3)
       {
         if (surface < 1000)
         {
@@ -68,7 +68,7 @@ namespace MegaDesk_HarmonyDurfee
         {
           quote += System.Convert.ToDecimal(PRICES[2]);
         }
-      } else if (Delivery == 5)
+      } else if (this.Delivery == 5)
       {
         if (surface < 1000)
         {
@@ -82,7 +82,7 @@ namespace MegaDesk_HarmonyDurfee
         {
           quote += System.Convert.ToDecimal(PRICES[5]);
         }
-      } else if (Delivery == 7)
+      } else if (this.Delivery == 7)
       {
         if (surface < 1000)
         {

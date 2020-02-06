@@ -170,11 +170,6 @@
       // 
       this.ComDelivery.AllowDrop = true;
       this.ComDelivery.FormattingEnabled = true;
-      this.ComDelivery.Items.AddRange(new object[] {
-            "Rush3Days",
-            "Rush5Days",
-            "Rush7Days",
-            "Normal14Days"});
       this.ComDelivery.Location = new System.Drawing.Point(545, 598);
       this.ComDelivery.Name = "ComDelivery";
       this.ComDelivery.Size = new System.Drawing.Size(321, 45);

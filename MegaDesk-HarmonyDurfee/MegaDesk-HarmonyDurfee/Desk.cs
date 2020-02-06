@@ -14,6 +14,13 @@ namespace MegaDesk_HarmonyDurfee
     Rosewood = 4,
     Veneer = 5
   };
+  public enum Delivery
+  {
+    Rush3Days = 3,
+    Rush5Days = 5,
+    Rush7Days = 7,
+    Normal14Days = 14
+  }
   public class Desk
   {
     public int Width { get; set; }
