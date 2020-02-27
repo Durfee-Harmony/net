@@ -14,6 +14,7 @@ namespace MegaDesk_HarmonyDurfee
     public Desk Desk { get; set; }
     public decimal FinalPrice { get; set; }
     public string[] PRICES { get; set; }
+    public DateTime QuoteDate;
 
     public int baseDesk = 200;
 

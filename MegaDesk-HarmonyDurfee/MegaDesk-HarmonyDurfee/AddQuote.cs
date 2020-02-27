@@ -54,7 +54,7 @@ namespace MegaDesk_HarmonyDurfee
       userQuote.Desk = userDesk;
       userQuote.getRushOrderPrices();
       userQuote.CalculateDeskQuote();
-      outputQuote.Text = "Quote: $" + userQuote.FinalPrice.ToString();
+      outputQuote.Text = "Quote: $" + userQuote.FinalPrice.ToString();        
     }
   }
 }
