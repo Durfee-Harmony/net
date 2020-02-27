@@ -12,6 +12,11 @@ namespace MegaDesk.Models
       public decimal FinalPrice { get; set; }
       public int DeskID { get; set; }
 
+      /* Navigation Properties */
+      public Desk Desk { get; set; }
+
+      // public Delivery DeliveryType { get; set; }
+
    }
 }
 

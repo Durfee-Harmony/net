@@ -11,5 +11,8 @@ namespace MegaDesk.Models
       public int Depth { get; set; }
       public int NumberOfDrawers { get; set; }
       public int DesktopMaterialID { get; set; }
+
+      /* Navigation Properties */
+      public DesktopMaterial DesktopMaterial { get; set; }
    }
 }

@@ -10,36 +10,44 @@ using MegaDesk.Models;
 
 namespace MegaDesk.Pages.Desks
 {
-    public class CreateModel : PageModel
-    {
-        private readonly MegaDesk.Data.MegaDeskContext _context;
+   public class CreateModel : PageModel
+   {
+      private readonly MegaDesk.Data.MegaDeskContext _context;
 
-        public CreateModel(MegaDesk.Data.MegaDeskContext context)
-        {
-            _context = context;
-        }
+      public CreateModel(MegaDesk.Data.MegaDeskContext context)
+      {
+         _context = context;
+      }
 
-        public IActionResult OnGet()
-        {
+      public IActionResult OnGet()
+      {
+         return Page();
+      }
+
+      [BindProperty]
+      public Desk Desk { get; set; }
+
+      // To protect from overposting attacks, please enable the specific properties you want to bind to, for
+      // more details see https://aka.ms/RazorPagesCRUD.
+      public async Task<IActionResult> OnPostAsync()
+      {
+         if (!ModelState.IsValid)
+         {
             return Page();
-        }
+         }
 
-        [BindProperty]
-        public Desk Desk { get; set; }
+         _context.Desk.Add(Desk);
 
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
-        {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+         // DO LOGIC
 
-            _context.Desk.Add(Desk);
-            await _context.SaveChangesAsync();
+         DeskQuote deskQuote = new DeskQuote();
 
-            return RedirectToPage("./Index");
-        }
-    }
+         _context.DeskQuote.Add(deskQuote);
+         // FINISH LOGIC
+
+         await _context.SaveChangesAsync();
+
+         return RedirectToPage("./Index");
+      }
+   }
 }
