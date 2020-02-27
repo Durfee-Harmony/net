@@ -34,6 +34,14 @@
                 <span asp-validation-for="DeskQuote.DeskID" class="text-danger"></span>
             </div>
             <div class="form-group">
+               <select name="Days to Complete" id="selectDaysToComplete">
+                  <option value="3">3 days (rush order)</option>
+                  <option value="5">5 days (rush order)</option>c
+                  <option value="7">7 days (rush order)</option>
+                  <option value="14">14 days (standard shipping)</option>
+               </select>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
