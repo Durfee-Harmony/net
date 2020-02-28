@@ -14,13 +14,13 @@ namespace MegaDesk.Pages.DeskQuotes
    {
       private readonly MegaDesk.Data.MegaDeskContext _context;
 
-      int DeskWidth { get; set; }
-      int DeskDepth { get; set; }
-      int DeskNumberOfDrawers { get; set; }
-      int DeskDesktopMaterialID { get; set; }
-      int BASE_PRICE = 200;
-      decimal FinalPrice;
-      int DaysToComplete;
+      public int DeskWidth { get; set; }
+      public int DeskDepth { get; set; }
+      public int DeskNumberOfDrawers { get; set; }
+      public int DeskDesktopMaterialID { get; set; }
+      public int BASE_PRICE = 200;
+      public decimal FinalPrice;
+      public int DaysToComplete;
 
 
       public CreateModel(MegaDesk.Data.MegaDeskContext context)
