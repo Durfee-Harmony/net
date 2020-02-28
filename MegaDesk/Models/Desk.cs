@@ -14,5 +14,13 @@ namespace MegaDesk.Models
 
       /* Navigation Properties */
       public DesktopMaterial DesktopMaterial { get; set; }
+
+      public Desk(int Width, int Depth, int NumberOfDrawers, int DesktopMaterialID)
+      {
+         this.Width = Width;
+         this.Depth = Depth;
+         this.NumberOfDrawers = NumberOfDrawers;
+         this.DesktopMaterialID = DesktopMaterialID;
+      }
    }
 }
