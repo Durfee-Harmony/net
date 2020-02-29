@@ -14,6 +14,7 @@ namespace MegaDesk.Models
       [Display(Name = "Final Price")]
       public decimal FinalPrice { get; set; }
       public int DeskID { get; set; }
+      public DateTime Date { get; set; }
 
       /* Navigation Properties */
       public Desk Desk { get; set; }
