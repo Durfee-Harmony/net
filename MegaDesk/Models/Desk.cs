@@ -9,20 +9,13 @@ namespace MegaDesk.Models
       public int ID { get; set; }
       public int Width { get; set; }
       public int Depth { get; set; }
-      [Display(Name="Number of Drawers")]
+      [Display(Name = "Number of Drawers")]
       public int NumberOfDrawers { get; set; }
-      [Display(Name="Desktop Material")]
+      [Display(Name = "Desktop Material")]
       public int DesktopMaterialID { get; set; }
 
       /* Navigation Properties */
       public DesktopMaterial DesktopMaterial { get; set; }
 
-      public Desk(int Width, int Depth, int NumberOfDrawers, int DesktopMaterialID)
-      {
-         this.Width = Width;
-         this.Depth = Depth;
-         this.NumberOfDrawers = NumberOfDrawers;
-         this.DesktopMaterialID = DesktopMaterialID;
-      }
    }
 }
