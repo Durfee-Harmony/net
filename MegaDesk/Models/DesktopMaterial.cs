@@ -10,17 +10,6 @@ namespace MegaDesk.Models
       public string MaterialName { get; set; }
       public decimal MaterialPrice { get; set; }
 
-      public DesktopMaterial(int ID)
-      {
-         this.ID = ID;
-      }
 
-      /*
-         Oak = 1,
-         Laminate = 2,
-         Pine = 3,
-         Rosewood = 4,
-         Veneer = 5
-      */
    }
 }

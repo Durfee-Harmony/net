@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MegaDesk.Models;
 
 namespace MegaDesk.Data
 {
@@ -13,5 +14,6 @@ namespace MegaDesk.Data
       public DbSet<MegaDesk.Models.Desk> Desk { get; set; }
       public DbSet<MegaDesk.Models.DeskQuote> DeskQuote { get; set; }
       public DbSet<MegaDesk.Models.DesktopMaterial> DesktopMaterial { get; set; }
+      public DbSet<MegaDesk.Models.DaysToComplete> DaysToComplete { get; set; }
    }
 }
