@@ -157,7 +157,7 @@ namespace MegaDesk.Pages.DeskQuotes
 
 
          // DO LOGIC
-         _context.Desk.Add(desk);
+         _context.Desk.Add(Desk);
          _context.DeskQuote.Add(DeskQuote);
 
 

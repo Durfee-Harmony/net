@@ -25,6 +25,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.DeskQuote[0].DeskID)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeskQuote[0].Date)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -42,6 +45,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DeskID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
