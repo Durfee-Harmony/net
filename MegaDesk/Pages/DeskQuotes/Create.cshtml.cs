@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MegaDesk.Data;
 using MegaDesk.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace MegaDesk.Pages.DeskQuotes
 {
@@ -22,6 +23,8 @@ namespace MegaDesk.Pages.DeskQuotes
       public decimal FinalPrice;
       public int DaysToComplete;
 
+      public List<int> Days;
+
 
       public CreateModel(MegaDesk.Data.MegaDeskContext context)
       {
@@ -30,8 +33,27 @@ namespace MegaDesk.Pages.DeskQuotes
 
       public IActionResult OnGet()
       {
+         var list = new List<SelectListItem>
+      {
+         new SelectListItem{ Text="14 days (standard)", Value = "14", Selected = true },
+         new SelectListItem{ Text="7 days (rush)", Value = "7" },
+         new SelectListItem{ Text="5 days (rush)", Value = "5" },
+         new SelectListItem{ Text="3 days (rush)", Value = "3" }
+      };
+
+         ViewData["daysToCompleteList"] = list;
          return Page();
       }
+
+      // public async Task OnGetAsync()
+      // {
+      //    IQueryable<int> daysQuery = from m in _context.DeskQuote
+      //                                orderby m.DaysToComplete
+      //                                select m.DaysToComplete;
+
+      //    Days = new SelectList(await daysQuery.Distinct().ToListAsync());
+
+      // }
 
       [BindProperty]
       public DeskQuote DeskQuote { get; set; }
@@ -41,10 +63,13 @@ namespace MegaDesk.Pages.DeskQuotes
       public async Task<IActionResult> OnPostAsync()
       {
 
-         if (!ModelState.IsValid)
-         {
-            return Page();
-         }
+
+         // if (!ModelState.IsValid)
+         // {
+         //    return Page();
+         // }
+
+         Days = (List<int>)ViewData["daysToCompleteList"];
 
          this.DeskWidth = DeskWidth;
          this.DeskDepth = DeskDepth;
@@ -55,13 +80,11 @@ namespace MegaDesk.Pages.DeskQuotes
 
 
          Desk desk = new Desk(DeskWidth, DeskDepth, DeskNumberOfDrawers, DeskDesktopMaterialID);
-         DeskQuote deskQuote = new DeskQuote();
-
 
          decimal deskPrice = (decimal)this.BASE_PRICE;
          decimal surfaceArea = desk.Width * desk.Depth;
          decimal numberOfDrawers = desk.NumberOfDrawers;
-         DesktopMaterial material = desk.DesktopMaterial;
+         DesktopMaterial material = new DesktopMaterial(DeskDesktopMaterialID);
          int[] PRICES = { 60, 70, 80, 40, 50, 60, 30, 35, 40 };
 
          deskPrice += numberOfDrawers * 50M;
@@ -71,23 +94,23 @@ namespace MegaDesk.Pages.DeskQuotes
             deskPrice += surfaceArea - 1000M;
          }
 
-         if (material.Equals(1))
+         if (material.MaterialName == "Oak")
          {
             deskPrice += 200M;
          }
-         else if (material.Equals(2))
+         else if (material.MaterialName == "Laminate")
          {
             deskPrice += 100M;
          }
-         else if (material.Equals(3))
+         else if (material.MaterialName == "Pine")
          {
             deskPrice += 50M;
          }
-         else if (material.Equals(4))
+         else if (material.MaterialName == "Rosewood")
          {
             deskPrice += 300M;
          }
-         else if (material.Equals(5))
+         else if (material.MaterialName == "Veneer")
          {
             deskPrice += 125M;
          }
@@ -137,12 +160,12 @@ namespace MegaDesk.Pages.DeskQuotes
                deskPrice += System.Convert.ToDecimal(PRICES[8]);
             }
          }
-         deskQuote.FinalPrice = deskPrice;
+         DeskQuote.FinalPrice = deskPrice;
 
 
          // DO LOGIC
          _context.Desk.Add(desk);
-         _context.DeskQuote.Add(deskQuote);
+         _context.DeskQuote.Add(DeskQuote);
 
 
          // FINISH LOGIC

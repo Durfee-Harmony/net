@@ -48,15 +48,19 @@
                 <span asp-validation-for="DeskQuote.FinalPrice" class="text-danger"></span>
             </div> *@
                 <input type="hidden" asp-for="DeskQuote.DeskID" class="form-control" />
-            <div class="form-group">
+            @* <div class="form-group">
                 <label asp-for="DeskQuote.DaysToComplete" class="control-label">Shipping</label>
-               <select asp-for="DeskQuote.DaysToComplete" name="Days to Complete" id="selectDaysToComplete">
-                  <option value="14">14 days (standard shipping)</option>
-                  <option value="7">7 days (rush order)</option>
-                  <option value="5">5 days (rush order)</option>
-                  <option value="3">3 days (rush order)</option>
-               </select>
-            </div>
+               <select asp-for="DeskQuote.DaysToComplete" asp-items="Model.Days">
+            <option value="">All</option>
+        </select>
+            </div> *@
+
+            @Html.DropDownList("daysToCompleteList", new List<SelectListItem> {
+               new SelectListItem{ Text="14 days (standard)", Value = "14" },
+               new SelectListItem{ Text="7 days (rush)", Value = "7" },
+               new SelectListItem{ Text="5 days (rush)", Value = "5" },
+               new SelectListItem{ Text="3 days (rush)", Value = "3" }
+            }) 
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
