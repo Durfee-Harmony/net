@@ -19,21 +19,22 @@
                 <span asp-validation-for="DeskQuote.CustomerName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DeskWidth" class="control-label"></label>
+                <label asp-for="DeskWidth" class="control-label">Width</label>
                 <input asp-for="DeskWidth" class="form-control" />
                 <span asp-validation-for="DeskWidth" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DeskDepth" class="control-label"></label>
+                <label asp-for="DeskDepth" class="control-label">Depth</label>
                 <input asp-for="DeskDepth" class="form-control" />
                 <span asp-validation-for="DeskDepth" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DeskNumberOfDrawers" class="control-label"></label>
+                <label asp-for="DeskNumberOfDrawers" class="control-label">Number of Drawers</label>
                 <input asp-for="DeskNumberOfDrawers" class="form-control" />
                 <span asp-validation-for="DeskNumberOfDrawers" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="DeskDesktopMaterialID" class="control-label">Desk Material</label>
                <select asp-for="DeskDesktopMaterialID" name="Material" id="selectDesktopID">
                   <option value="oak">Oak</option>
                   <option value="laminate">Laminate</option>
@@ -48,6 +49,7 @@
             </div> *@
                 <input type="hidden" asp-for="DeskQuote.DeskID" class="form-control" />
             <div class="form-group">
+                <label asp-for="DeskQuote.DaysToComplete" class="control-label">Shipping</label>
                <select asp-for="DeskQuote.DaysToComplete" name="Days to Complete" id="selectDaysToComplete">
                   <option value="14">14 days (standard shipping)</option>
                   <option value="7">7 days (rush order)</option>
