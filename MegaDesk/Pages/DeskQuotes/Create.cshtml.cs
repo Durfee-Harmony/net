@@ -51,7 +51,7 @@ namespace MegaDesk.Pages.DeskQuotes
       public SelectList DaysToComplete { get; set; }
 
 
-      public DesktopMaterial DesktopMaterial { get; set; }
+      public SelectList DesktopMaterials { get; set; }
 
 
 
@@ -61,7 +61,12 @@ namespace MegaDesk.Pages.DeskQuotes
                                         orderby m.ID
                                         select m.Description;
 
+         IQueryable<string> materialsQuery = from m in _context.DesktopMaterial
+                                             orderby m.ID
+                                             select m.MaterialName;
+
          DaysToComplete = new SelectList(await daysQuery.Distinct().ToListAsync());
+         DesktopMaterials = new SelectList(await materialsQuery.Distinct().ToListAsync());
 
       }
 
@@ -95,23 +100,23 @@ namespace MegaDesk.Pages.DeskQuotes
             deskPrice += surfaceArea - 1000M;
          }
 
-         if (DesktopMaterial.MaterialName == "Oak")
+         if (DesktopMaterials.SelectedValue.Equals("Oak"))
          {
             deskPrice += 200M;
          }
-         else if (DesktopMaterial.MaterialName == "Laminate")
+         else if (DesktopMaterials.SelectedValue.Equals("Laminate"))
          {
             deskPrice += 100M;
          }
-         else if (DesktopMaterial.MaterialName == "Pine")
+         else if (DesktopMaterials.SelectedValue.Equals("Pine"))
          {
             deskPrice += 50M;
          }
-         else if (DesktopMaterial.MaterialName == "Rosewood")
+         else if (DesktopMaterials.SelectedValue.Equals("Rosewood"))
          {
             deskPrice += 300M;
          }
-         else if (DesktopMaterial.MaterialName == "Veneer")
+         else if (DesktopMaterials.SelectedValue.Equals("Veneer"))
          {
             deskPrice += 125M;
          }
