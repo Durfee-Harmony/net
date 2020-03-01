@@ -18,27 +18,11 @@ namespace MegaDesk.Pages.DeskQuotes
       public int BASE_PRICE = 200;
       public decimal FinalPrice;
 
-      public List<int> Days;
-
 
       public CreateModel(MegaDesk.Data.MegaDeskContext context)
       {
          _context = context;
       }
-
-      // public IActionResult OnGet()
-      // {
-      //    var list = new List<SelectListItem>
-      // {
-      //    new SelectListItem{ Text="14 days (standard)", Value = "14", Selected = true },
-      //    new SelectListItem{ Text="7 days (rush)", Value = "7" },
-      //    new SelectListItem{ Text="5 days (rush)", Value = "5" },
-      //    new SelectListItem{ Text="3 days (rush)", Value = "3" }
-      // };
-
-      //    ViewData["daysToCompleteList"] = list;
-      //    return Page();
-      // }
 
 
       [BindProperty]
@@ -48,25 +32,25 @@ namespace MegaDesk.Pages.DeskQuotes
       public Desk Desk { get; set; }
 
 
-      public SelectList DaysToComplete { get; set; }
+      public IList<DaysToComplete> DaysToComplete { get; set; }
 
 
-      public SelectList DesktopMaterials { get; set; }
+      public IList<DesktopMaterial> DesktopMaterials { get; set; }
 
 
 
       public async Task OnGetAsync()
       {
-         IQueryable<string> daysQuery = from m in _context.DaysToComplete
-                                        orderby m.ID
-                                        select m.Description;
+         IQueryable<DaysToComplete> daysQuery = from m in _context.DaysToComplete
+                                                orderby m.ID
+                                                select m;
 
-         IQueryable<string> materialsQuery = from m in _context.DesktopMaterial
-                                             orderby m.ID
-                                             select m.MaterialName;
+         IQueryable<DesktopMaterial> materialsQuery = from m in _context.DesktopMaterial
+                                                      orderby m.ID
+                                                      select m;
 
-         DaysToComplete = new SelectList(await daysQuery.Distinct().ToListAsync());
-         DesktopMaterials = new SelectList(await materialsQuery.Distinct().ToListAsync());
+         DaysToComplete = await daysQuery.ToListAsync();
+         DesktopMaterials = await materialsQuery.ToListAsync();
 
       }
 
@@ -86,8 +70,6 @@ namespace MegaDesk.Pages.DeskQuotes
          //    return Page();
          // }
 
-         Days = (List<int>)ViewData["daysToCompleteList"];
-
          decimal deskPrice = (decimal)this.BASE_PRICE;
          decimal surfaceArea = Desk.Width * Desk.Depth;
          int[] PRICES = { 60, 70, 80, 40, 50, 60, 30, 35, 40 };
@@ -100,28 +82,28 @@ namespace MegaDesk.Pages.DeskQuotes
             deskPrice += surfaceArea - 1000M;
          }
 
-         if (DesktopMaterials.SelectedValue.Equals("Oak"))
+         if (DesktopMaterials.Equals("Oak"))
          {
             deskPrice += 200M;
          }
-         else if (DesktopMaterials.SelectedValue.Equals("Laminate"))
+         else if (DesktopMaterials.Equals("Laminate"))
          {
             deskPrice += 100M;
          }
-         else if (DesktopMaterials.SelectedValue.Equals("Pine"))
+         else if (DesktopMaterials.Equals("Pine"))
          {
             deskPrice += 50M;
          }
-         else if (DesktopMaterials.SelectedValue.Equals("Rosewood"))
+         else if (DesktopMaterials.Equals("Rosewood"))
          {
             deskPrice += 300M;
          }
-         else if (DesktopMaterials.SelectedValue.Equals("Veneer"))
+         else if (DesktopMaterials.Equals("Veneer"))
          {
             deskPrice += 125M;
          }
 
-         if (DaysToComplete.SelectedValue.Equals(3))
+         if (DaysToComplete.Equals(3))
          {
             if (surfaceArea < 1000)
             {
@@ -136,7 +118,7 @@ namespace MegaDesk.Pages.DeskQuotes
                deskPrice += System.Convert.ToDecimal(PRICES[2]);
             }
          }
-         else if (DaysToComplete.SelectedValue.Equals(5))
+         else if (DaysToComplete.Equals(5))
          {
             if (surfaceArea < 1000)
             {
@@ -151,7 +133,7 @@ namespace MegaDesk.Pages.DeskQuotes
                deskPrice += System.Convert.ToDecimal(PRICES[5]);
             }
          }
-         else if (DaysToComplete.SelectedValue.Equals(7))
+         else if (DaysToComplete.Equals(7))
          {
             if (surfaceArea < 1000)
             {
