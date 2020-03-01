@@ -36,13 +36,19 @@
             <div class="form-group">
                 <label asp-for="DesktopMaterial.ID" class="control-label">Desk Material</label>
                   <select asp-for="DesktopMaterial.ID" name="Material" id="selectDesktopID">
-                  <option value="add">Add</option>
+                  <option value="add">Choose an Option</option>
                </select>
             </div> 
                <div class="form-group">
+<<<<<<< HEAD
                   <label asp-for="DaysToComplete" class="control-label"></label>
                   <select asp-for="DaysToComplete" name="DaysToComplete" id="selectDaysToComplete">
                   </select>
+=======
+                  <label asp-for="DaysToComplete.Description" class="control-label"></label>
+                  <select asp-for="DaysToComplete.Description" name="DaysToComplete" id="selectDaysToComplete"></select>
+                  <option value="add">Choose an Option</option>
+>>>>>>> f0ad9a3713e6f5b2db918ba0ae1f2e82bf349f37
                </div>
            
                 <input type="hidden" asp-for="DeskQuote.DeskID" class="form-control" />
