@@ -26,41 +26,49 @@ namespace MegaDesk.Pages.DeskQuotes
          _context = context;
       }
 
-      public IActionResult OnGet()
-      {
-         var list = new List<SelectListItem>
-      {
-         new SelectListItem{ Text="14 days (standard)", Value = "14", Selected = true },
-         new SelectListItem{ Text="7 days (rush)", Value = "7" },
-         new SelectListItem{ Text="5 days (rush)", Value = "5" },
-         new SelectListItem{ Text="3 days (rush)", Value = "3" }
-      };
-
-         ViewData["daysToCompleteList"] = list;
-         return Page();
-      }
-
-      // public async Task OnGetAsync()
+      // public IActionResult OnGet()
       // {
-      //    IQueryable<int> daysQuery = from m in _context.DeskQuote
-      //                                orderby m.DaysToComplete
-      //                                select m.DaysToComplete;
+      //    var list = new List<SelectListItem>
+      // {
+      //    new SelectListItem{ Text="14 days (standard)", Value = "14", Selected = true },
+      //    new SelectListItem{ Text="7 days (rush)", Value = "7" },
+      //    new SelectListItem{ Text="5 days (rush)", Value = "5" },
+      //    new SelectListItem{ Text="3 days (rush)", Value = "3" }
+      // };
 
-      //    Days = new SelectList(await daysQuery.Distinct().ToListAsync());
-
+      //    ViewData["daysToCompleteList"] = list;
+      //    return Page();
       // }
+
 
       [BindProperty]
       public DeskQuote DeskQuote { get; set; }
 
-      [BindProperty]
+      [BindProperty(SupportsGet = true)]
       public Desk Desk { get; set; }
 
-      [BindProperty]
-      public DaysToComplete DaysToComplete { get; set; }
+      [BindProperty(SupportsGet = true)]
+      public SelectList DaysToComplete { get; set; }
 
-      [BindProperty]
+      [BindProperty(SupportsGet = true)]
       public DesktopMaterial DesktopMaterial { get; set; }
+
+
+
+      public async Task OnGetAsync()
+      {
+         IQueryable<string> daysQuery = from m in _context.DaysToComplete
+                                        orderby m.ID
+                                        select m.Description;
+
+         DaysToComplete = new SelectList(await daysQuery.Distinct().ToListAsync());
+
+      }
+
+
+
+
+
 
       // To protect from overposting attacks, please enable the specific properties you want to bind to, for
       // more details see https://aka.ms/RazorPagesCRUD.
@@ -108,7 +116,7 @@ namespace MegaDesk.Pages.DeskQuotes
             deskPrice += 125M;
          }
 
-         if (DaysToComplete.Days == 3)
+         if (DaysToComplete.SelectedValue.Equals(3))
          {
             if (surfaceArea < 1000)
             {
@@ -123,7 +131,7 @@ namespace MegaDesk.Pages.DeskQuotes
                deskPrice += System.Convert.ToDecimal(PRICES[2]);
             }
          }
-         else if (DaysToComplete.Days == 5)
+         else if (DaysToComplete.SelectedValue.Equals(5))
          {
             if (surfaceArea < 1000)
             {
@@ -138,7 +146,7 @@ namespace MegaDesk.Pages.DeskQuotes
                deskPrice += System.Convert.ToDecimal(PRICES[5]);
             }
          }
-         else if (DaysToComplete.Days == 7)
+         else if (DaysToComplete.SelectedValue.Equals(7))
          {
             if (surfaceArea < 1000)
             {
