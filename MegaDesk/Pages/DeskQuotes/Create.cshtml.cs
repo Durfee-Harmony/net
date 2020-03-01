@@ -47,10 +47,10 @@ namespace MegaDesk.Pages.DeskQuotes
       [BindProperty(SupportsGet = true)]
       public Desk Desk { get; set; }
 
-      [BindProperty(SupportsGet = true)]
+
       public SelectList DaysToComplete { get; set; }
 
-      [BindProperty(SupportsGet = true)]
+
       public DesktopMaterial DesktopMaterial { get; set; }
 
 
