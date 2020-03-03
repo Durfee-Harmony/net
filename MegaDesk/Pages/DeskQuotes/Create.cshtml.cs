@@ -17,6 +17,7 @@ namespace MegaDesk.Pages.DeskQuotes
 
       public int BASE_PRICE = 200;
       public decimal FinalPrice;
+      public string errorvariable;
 
 
       public CreateModel(MegaDesk.Data.MegaDeskContext context)
@@ -24,21 +25,15 @@ namespace MegaDesk.Pages.DeskQuotes
          _context = context;
       }
 
-
       [BindProperty]
       public DeskQuote DeskQuote { get; set; }
 
       [BindProperty(SupportsGet = true)]
       public Desk Desk { get; set; }
 
-
-
       public SelectList DaysToComplete { get; set; }
 
-
       public SelectList DesktopMaterials { get; set; }
-
-
 
       [BindProperty(SupportsGet = true)]
       public string selectedMaterial { get; set; }
@@ -65,20 +60,8 @@ namespace MegaDesk.Pages.DeskQuotes
 
 
 
-
-
-
-      // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-      // more details see https://aka.ms/RazorPagesCRUD.
       public async Task<IActionResult> OnPostAsync()
       {
-
-
-         // if (!ModelState.IsValid)
-         // {
-         //    return Page();
-         // }
-
          decimal deskPrice = (decimal)this.BASE_PRICE;
          decimal surfaceArea = Desk.Width * Desk.Depth;
          int[] PRICES = { 60, 70, 80, 40, 50, 60, 30, 35, 40 };
@@ -159,7 +142,7 @@ namespace MegaDesk.Pages.DeskQuotes
          }
          DeskQuote.FinalPrice = deskPrice;
 
-
+         DeskQuote.Date = DateTime.Now;
          Desk.DesktopMaterialID = Convert.ToInt16(selectedMaterial);
          DeskQuote.DaysToCompleteID = Convert.ToInt16(selectedDays);
 

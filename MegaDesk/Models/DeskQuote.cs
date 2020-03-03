@@ -18,6 +18,7 @@ namespace MegaDesk.Models
 
       /* Navigation Properties */
       public Desk Desk { get; set; }
+      public DaysToComplete DaysToComplete { get; set; }
 
       // public Delivery DeliveryType { get; set; }
 

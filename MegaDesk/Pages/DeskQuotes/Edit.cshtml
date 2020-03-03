@@ -50,8 +50,8 @@
                 <span asp-validation-for="DeskQuote.Desk.NumberOfDrawers" class="text-danger"></span>
             </div>
             <div class="form-group">
-               <label class="control-label" asp-for="selectedMaterial">Material Name</label>
-               <select class="form-control" asp-for="selectedMaterial" asp-items="Model.DesktopMaterials">
+               <label class="control-label" asp-for="DeskQuote.Desk.DesktopMaterial">Material Name</label>
+               <select class="form-control" asp-for="DeskQuote.Desk.DesktopMaterial.MaterialName" asp-items="Model.DesktopMaterials">
                   <option value="">All</option>
                </select>
             </div>

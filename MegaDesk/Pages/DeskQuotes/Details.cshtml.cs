@@ -10,31 +10,36 @@ using MegaDesk.Models;
 
 namespace MegaDesk.Pages.DeskQuotes
 {
-    public class DetailsModel : PageModel
-    {
-        private readonly MegaDesk.Data.MegaDeskContext _context;
+   public class DetailsModel : PageModel
+   {
+      private readonly MegaDesk.Data.MegaDeskContext _context;
 
-        public DetailsModel(MegaDesk.Data.MegaDeskContext context)
-        {
-            _context = context;
-        }
+      public DetailsModel(MegaDesk.Data.MegaDeskContext context)
+      {
+         _context = context;
+      }
 
-        public DeskQuote DeskQuote { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+      public DeskQuote DeskQuote { get; set; }
+      public Desk Desk { get; set; }
+      public DesktopMaterial DesktopMaterial { get; set; }
 
-            DeskQuote = await _context.DeskQuote.FirstOrDefaultAsync(m => m.ID == id);
+      public async Task<IActionResult> OnGetAsync(int? id)
+      {
+         if (id == null)
+         {
+            return NotFound();
+         }
 
-            if (DeskQuote == null)
-            {
-                return NotFound();
-            }
-            return Page();
-        }
-    }
+         DeskQuote = await _context.DeskQuote.FirstOrDefaultAsync(m => m.ID == id);
+         Desk = await _context.Desk.FirstOrDefaultAsync(m => m.ID == DeskQuote.DeskID);
+         DesktopMaterial = await _context.DesktopMaterial.FirstOrDefaultAsync(m => m.ID == Desk.DesktopMaterialID);
+
+         if (DeskQuote == null)
+         {
+            return NotFound();
+         }
+         return Page();
+      }
+   }
 }
