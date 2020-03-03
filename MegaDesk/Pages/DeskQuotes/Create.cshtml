@@ -33,9 +33,18 @@
                 <input asp-for="Desk.NumberOfDrawers" class="form-control" />
                 <span asp-validation-for="Desk.NumberOfDrawers" class="text-danger"></span>
             </div>
-               <select asp-for="DesktopMaterials" asp-items="Model.DesktopMaterials">
+            <div class="form-group">
+               <label class="control-label" asp-for="selectedMaterial">Material Name</label>
+               <select class="form-control" asp-for="selectedMaterial" asp-items="Model.DesktopMaterials">
                   <option value="">All</option>
                </select>
+            </div>
+            <div class="form-group">
+               <label class="control-label" asp-for="selectedDays">Days To Complete</label>
+               <select class="form-control" asp-for="selectedDays" asp-items="Model.DaysToComplete">
+                  <option value="">All</option>
+               </select>
+            </div>
 
             @* <div class="form-group">
                 <label asp-for="DesktopMaterials" class="control-label">Desk Material</label>
