@@ -36,17 +36,18 @@ namespace MegaDesk.Pages.DeskQuotes
       {
          DeskQuote = await _context.DeskQuote
          .Include(d => d.Desk)
+         .Include(m => m.Desk.DesktopMaterial)
          .Include(a => a.DaysToComplete)
          .FirstOrDefaultAsync(m => m.ID == id);
 
          IQueryable<DaysToComplete> daysQuery = from m in _context.DaysToComplete
                                                 orderby m.ID
-                                                where m.ID != DeskQuote.DaysToComplete.ID
+                                                where m.ID != DeskQuote.DaysToCompleteID
                                                 select m;
 
          IQueryable<DesktopMaterial> materialsQuery = from m in _context.DesktopMaterial
                                                       orderby m.ID
-                                                      where m.ID != DeskQuote.Desk.DesktopMaterial.ID
+                                                      where m.ID != DeskQuote.Desk.DesktopMaterialID
                                                       select m;
          // .Where(m => m.ID != DeskQuote.DaysToComplete.ID)
          DaysToComplete = new SelectList(await daysQuery.Distinct().ToListAsync(), "ID", "Description");
