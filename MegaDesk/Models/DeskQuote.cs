@@ -10,7 +10,7 @@ namespace MegaDesk.Models
       [Display(Name = "Customer Name")]
       public string CustomerName { get; set; }
       [Display(Name = "Days to Complete")]
-      public int DaysToComplete { get; set; }
+      public int DaysToCompleteID { get; set; }
       [Display(Name = "Final Price")]
       public decimal FinalPrice { get; set; }
       public int DeskID { get; set; }

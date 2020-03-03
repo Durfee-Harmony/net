@@ -58,8 +58,8 @@ namespace MegaDesk.Pages.DeskQuotes
                                                       orderby m.ID
                                                       select m;
 
-         DaysToComplete = new SelectList(await daysQuery.Distinct().ToListAsync(), "Description", "Description");
-         DesktopMaterials = new SelectList(await materialsQuery.Distinct().ToListAsync(), "MaterialName", "MaterialName");
+         DaysToComplete = new SelectList(await daysQuery.Distinct().ToListAsync(), "ID", "Description");
+         DesktopMaterials = new SelectList(await materialsQuery.Distinct().ToListAsync(), "ID", "MaterialName");
 
       }
 
@@ -160,16 +160,14 @@ namespace MegaDesk.Pages.DeskQuotes
          DeskQuote.FinalPrice = deskPrice;
 
 
-         // DO LOGIC
-         var fk = _context.Desk.Add(Desk);
-         DeskQuote.DeskID = fk.Entity.ID;
-         Desk.DesktopMaterialID = _context.Find(DesktopMaterial, );
-         // FINISH LOGIC
+         Desk.DesktopMaterialID = Convert.ToInt16(selectedMaterial);
+         Desk.DaysToCompleteID = Convert.ToInt16(selectedDays);
+
+         var returnedEntity = _context.Desk.Add(Desk);
+         DeskQuote.DeskID = returnedEntity.Entity.ID;
+         DeskQuote.Desk = Desk;
          _context.DeskQuote.Add(DeskQuote);
          await _context.SaveChangesAsync();
-
-
-
 
          return RedirectToPage("./Index");
       }
