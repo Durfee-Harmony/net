@@ -49,7 +49,7 @@ namespace MegaDesk.Pages.DeskQuotes
                                                       orderby m.ID
                                                       select m;
 
-         DaysToComplete = new SelectList(await daysQuery.Distinct().ToListAsync());
+         DaysToComplete = new SelectList(await daysQuery.ToListAsync());
          DesktopMaterials = new SelectList(await materialsQuery.ToListAsync());
 
       }
