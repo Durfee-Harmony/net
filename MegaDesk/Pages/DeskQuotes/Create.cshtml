@@ -33,7 +33,7 @@
                 <input asp-for="Desk.NumberOfDrawers" class="form-control" />
                 <span asp-validation-for="Desk.NumberOfDrawers" class="text-danger"></span>
             </div>
-               @Html.DropDownList("DesktopMaterials", ViewData["DesktopMaterials.MaterialName"] as IEnumerable<SelectListItem>)
+               @Html.DropDownList("DesktopMaterials.MaterialName", ViewData["DesktopMaterials"] as IEnumerable<SelectListItem>)
 
             @* <div class="form-group">
                 <label asp-for="DesktopMaterials" class="control-label">Desk Material</label>
