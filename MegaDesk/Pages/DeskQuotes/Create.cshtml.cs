@@ -112,7 +112,7 @@ namespace MegaDesk.Pages.DeskQuotes
             deskPrice += 125M;
          }
 
-         if (DaysToComplete.Equals(3))
+         if (selectedDays == "3 days (rush)")
          {
             if (surfaceArea < 1000)
             {
@@ -127,7 +127,7 @@ namespace MegaDesk.Pages.DeskQuotes
                deskPrice += System.Convert.ToDecimal(PRICES[2]);
             }
          }
-         else if (DaysToComplete.Equals(5))
+         else if (selectedDays == "5 days (rush)")
          {
             if (surfaceArea < 1000)
             {
@@ -142,7 +142,7 @@ namespace MegaDesk.Pages.DeskQuotes
                deskPrice += System.Convert.ToDecimal(PRICES[5]);
             }
          }
-         else if (DaysToComplete.Equals(7))
+         else if (selectedDays == "7 days (rush)")
          {
             if (surfaceArea < 1000)
             {
@@ -161,13 +161,15 @@ namespace MegaDesk.Pages.DeskQuotes
 
 
          // DO LOGIC
-         _context.Desk.Add(Desk);
-         _context.DeskQuote.Add(DeskQuote);
-
-
+         var fk = _context.Desk.Add(Desk);
+         DeskQuote.DeskID = fk.Entity.ID;
+         Desk.DesktopMaterialID = _context.Find(DesktopMaterial, );
          // FINISH LOGIC
-
+         _context.DeskQuote.Add(DeskQuote);
          await _context.SaveChangesAsync();
+
+
+
 
          return RedirectToPage("./Index");
       }
