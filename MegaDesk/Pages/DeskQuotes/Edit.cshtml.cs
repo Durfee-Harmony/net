@@ -22,9 +22,30 @@ namespace MegaDesk.Pages.DeskQuotes
 
         [BindProperty]
         public DeskQuote DeskQuote { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public Desk Desk { get; set; }
+        public SelectList DaysToComplete { get; set; }
+        public SelectList DesktopMaterials { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string selectedMaterial { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public string selectedDays { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            IQueryable<DaysToComplete> daysQuery = from m in _context.DaysToComplete
+                                                   orderby m.ID
+                                                   select m;
+
+            IQueryable<DesktopMaterial> materialsQuery = from m in _context.DesktopMaterial
+                                                         orderby m.ID
+                                                         select m;
+
+            DaysToComplete = new SelectList(await daysQuery.Distinct().ToListAsync(), "ID", "Description");
+            DesktopMaterials = new SelectList(await materialsQuery.Distinct().ToListAsync(), "ID", "MaterialName");
+
             if (id == null)
             {
                 return NotFound();
