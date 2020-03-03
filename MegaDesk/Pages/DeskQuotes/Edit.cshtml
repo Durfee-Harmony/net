@@ -50,15 +50,15 @@
                 <span asp-validation-for="DeskQuote.Desk.NumberOfDrawers" class="text-danger"></span>
             </div>
             <div class="form-group">
-               <label class="control-label" asp-for="DeskQuote.Desk.DesktopMaterial">Material Name</label>
-               <select class="form-control" asp-for="DeskQuote.Desk.DesktopMaterial.MaterialName" asp-items="Model.DesktopMaterials">
-                  <option value="">All</option>
+               <label class="control-label" asp-for="selectedMaterial">Material Name</label>
+               <select class="form-control" asp-for="selectedMaterial" asp-items="Model.DesktopMaterials">
+                  <option selected value="Model.DeskQuote.Desk.DesktopMaterialID">@Model.DeskQuote.Desk.DesktopMaterial.MaterialName</option>
                </select>
             </div>
             <div class="form-group">
                <label class="control-label" asp-for="selectedDays">Days To Complete</label>
                <select class="form-control" asp-for="selectedDays" asp-items="Model.DaysToComplete">
-                  <option value="">All</option>
+                  <option selected value="Model.DeskQuote.DaysToCompleteID">@Model.DeskQuote.DaysToComplete.Description</option>
                </select>
             </div>
             <div class="form-group">

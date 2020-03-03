@@ -22,8 +22,7 @@ namespace MegaDesk.Pages.DeskQuotes
 
       [BindProperty]
       public DeskQuote DeskQuote { get; set; }
-      [BindProperty(SupportsGet = true)]
-      public Desk Desk { get; set; }
+
       public SelectList DaysToComplete { get; set; }
       public SelectList DesktopMaterials { get; set; }
 
@@ -35,14 +34,21 @@ namespace MegaDesk.Pages.DeskQuotes
 
       public async Task<IActionResult> OnGetAsync(int? id)
       {
+         DeskQuote = await _context.DeskQuote
+         .Include(d => d.Desk)
+         .Include(a => a.DaysToComplete)
+         .FirstOrDefaultAsync(m => m.ID == id);
+
          IQueryable<DaysToComplete> daysQuery = from m in _context.DaysToComplete
                                                 orderby m.ID
+                                                where m.ID != DeskQuote.DaysToComplete.ID
                                                 select m;
 
          IQueryable<DesktopMaterial> materialsQuery = from m in _context.DesktopMaterial
                                                       orderby m.ID
+                                                      where m.ID != DeskQuote.Desk.DesktopMaterial.ID
                                                       select m;
-
+         // .Where(m => m.ID != DeskQuote.DaysToComplete.ID)
          DaysToComplete = new SelectList(await daysQuery.Distinct().ToListAsync(), "ID", "Description");
          DesktopMaterials = new SelectList(await materialsQuery.Distinct().ToListAsync(), "ID", "MaterialName");
 
@@ -51,11 +57,7 @@ namespace MegaDesk.Pages.DeskQuotes
             return NotFound();
          }
 
-         DeskQuote = await _context.DeskQuote
-         .Include(d => d.Desk)
-         .Include(a => a.DaysToComplete)
-         .FirstOrDefaultAsync(m => m.ID == id);
-         Desk = await _context.Desk.FirstOrDefaultAsync(m => m.ID == DeskQuote.DeskID);
+
 
          if (DeskQuote == null)
          {
@@ -68,10 +70,13 @@ namespace MegaDesk.Pages.DeskQuotes
 
       public async Task<IActionResult> OnPostAsync()
       {
-         if (!ModelState.IsValid)
-         {
-            return Page();
-         }
+         // if (!ModelState.IsValid)
+         // {
+         //    return Page();
+         // }
+
+         DeskQuote.Desk.DesktopMaterialID = Convert.ToInt16(selectedMaterial);
+         DeskQuote.DaysToCompleteID = Convert.ToInt16(selectedDays);
 
          _context.Attach(DeskQuote).State = EntityState.Modified;
 

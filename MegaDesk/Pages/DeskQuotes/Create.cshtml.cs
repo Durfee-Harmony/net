@@ -56,6 +56,8 @@ namespace MegaDesk.Pages.DeskQuotes
          DaysToComplete = new SelectList(await daysQuery.Distinct().ToListAsync(), "ID", "Description");
          DesktopMaterials = new SelectList(await materialsQuery.Distinct().ToListAsync(), "ID", "MaterialName");
 
+
+
       }
 
 
