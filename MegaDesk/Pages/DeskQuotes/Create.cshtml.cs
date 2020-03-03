@@ -32,10 +32,10 @@ namespace MegaDesk.Pages.DeskQuotes
       public Desk Desk { get; set; }
 
 
-      public IList<DaysToComplete> DaysToComplete { get; set; }
+      public SelectList DaysToComplete { get; set; }
 
 
-      public IList<DesktopMaterial> DesktopMaterials { get; set; }
+      public SelectList DesktopMaterials { get; set; }
 
 
 
@@ -49,8 +49,8 @@ namespace MegaDesk.Pages.DeskQuotes
                                                       orderby m.ID
                                                       select m;
 
-         DaysToComplete = await daysQuery.ToListAsync();
-         DesktopMaterials = await materialsQuery.ToListAsync();
+         DaysToComplete = new SelectList(await daysQuery.Distinct().ToListAsync());
+         DesktopMaterials = new SelectList(await materialsQuery.ToListAsync());
 
       }
 
