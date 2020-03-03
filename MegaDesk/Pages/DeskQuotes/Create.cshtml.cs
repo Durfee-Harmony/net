@@ -161,7 +161,7 @@ namespace MegaDesk.Pages.DeskQuotes
 
 
          Desk.DesktopMaterialID = Convert.ToInt16(selectedMaterial);
-         Desk.DaysToCompleteID = Convert.ToInt16(selectedDays);
+         DeskQuote.DaysToCompleteID = Convert.ToInt16(selectedDays);
 
          var returnedEntity = _context.Desk.Add(Desk);
          DeskQuote.DeskID = returnedEntity.Entity.ID;
