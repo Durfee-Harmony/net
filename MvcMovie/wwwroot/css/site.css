@@ -80,3 +80,12 @@ body {
 h1, h2, h3, h4, h5, h6, a, input, p, div, td {
   color: hotpink;
 }
+
+table.table thead th, table.table tbody td {
+  color: hotpink;
+  border-color: green;
+}
+
+a:hover, a:active {
+  color: green;
+}
