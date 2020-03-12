@@ -23,12 +23,6 @@ public string SortDate { get; set; }
     // GET: Movies
     public async Task<IActionResult> Index(string movieGenre, string sortOrder, string searchString)
     {
-      if (sortOrder == null || sortOrder == "" || string.IsNullOrEmpty(sortOrder))
-      {
-        sortOrder = "ReleaseDate_Desc_Sort";
-      }
-      SortDate = sortOrder == "ReleaseDate_Asc_Sort" ? "ReleaseDate_Desc_Sort" : "ReleaseDate_Asc_Sort";
-
       // Use LINQ to get list of genres.
       IQueryable<string> genreQuery = from m in _context.Movie
                                       orderby m.Genre
@@ -49,10 +43,10 @@ public string SortDate { get; set; }
 
       switch (sortOrder)
       {
-        case "ReleaseDate_Asc_Sort":
+        case "Asc":
           movies = movies.OrderBy(m => m.ReleaseDate);
           break;
-        case "ReleaseDate_Desc_Sort":
+        case "Desc":
           movies = movies.OrderByDescending(s => s.ReleaseDate);
           break;
         default:
@@ -65,6 +59,8 @@ public string SortDate { get; set; }
         Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
         Movies = await movies.ToListAsync()
       };
+
+      movieGenreVM.SortDate = sortOrder == "Asc" ? "Desc" : "Asc";
       return View(movieGenreVM);
     //   return View(await _context.Movie.ToListAsync());
     }
