@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 
 namespace Final.Models
 {
-  public class Speaker
+  public class Musician
   {
     public int ID { get; set; }
     public string LastName { get; set; }
     public string FirstMidName { get; set; }
-
-    public ICollection<Meeting> Meetings { get; set; }
+    public Music Music { get; set;  }
   }
 }
