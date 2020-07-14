@@ -20,9 +20,17 @@ namespace SacramentMeeting.Controllers
         }
 
         // GET: Meetings
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Meeting.ToListAsync());
+            var meetings = from m in _context.Meeting
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                meetings = meetings.Where(s => s.Conductor.Contains(searchString));
+            }
+
+            return View(await meetings.ToListAsync());
         }
 
         // GET: Meetings/Details/5
